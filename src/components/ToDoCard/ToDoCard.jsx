@@ -1,8 +1,14 @@
 import { useState } from "react";
 
-function TodoCard({ id, todoText, isFinished, changeFinished,onDelete,onEdit }) {
+function TodoCard({
+  todoText,
+  isFinished,
+  changeFinished,
+  onDelete,
+  onEdit,
+}) {
   const [status, setStatus] = useState(isFinished);
-  const [editMode,setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(false);
   const [editText, setEditText] = useState(todoText);
 
   return (
@@ -16,12 +22,24 @@ function TodoCard({ id, todoText, isFinished, changeFinished,onDelete,onEdit }) 
           changeFinished(e.target.checked);
         }}
       />
-      { editMode ? <input type="text" value={editText} onChange={(e)=> setEditText(e.target.value)} /> :  todoText}
-      <button onClick={()=> {
-        setEditMode(!editMode);
-        onEdit(editText);
-      }}>{editMode ? 'Save' : 'Edit'}</button>
-      <button onClick={()=> onDelete()}>Delete</button>
+      {editMode ? (
+        <input
+          type="text"
+          value={editText}
+          onChange={(e) => setEditText(e.target.value)}
+        />
+      ) : (
+        todoText
+      )}
+      <button
+        onClick={() => {
+          setEditMode(!editMode);
+          onEdit(editText);
+        }}
+      >
+        {editMode ? "Save" : "Edit"}
+      </button>
+      <button onClick={() => onDelete()}>Delete</button>
     </div>
   );
 }

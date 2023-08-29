@@ -2,19 +2,21 @@ import TodoContext from "../../context/TodoContext";
 import { useContext, useState } from "react";
 
 function AddToDo({ updateList }) {
-  const [list,setList] = useContext(TodoContext);
+  const [list, setList] = useContext(TodoContext);
   const [inputText, setInputText] = useState("");
-  const addTodo = (inputText)=>{
-        setList([
-          ...list,
-          {
-            id: list.length + 1,
-            todoText: inputText,
-            isFinished: false,
-          }
-        ])
-      setInputText('');
-  }
+  const addTodo = (inputText) => {
+    let l = list.length;
+    setList([
+      ...list,
+      {
+        id: list[l - 1].id + 1,
+        todoText: inputText,
+        isFinished: false,
+      },
+    ]);
+    setInputText("");
+  };
+  
   return (
     <>
       <h1>Add to do </h1>
@@ -24,7 +26,7 @@ function AddToDo({ updateList }) {
         placeholder="Enter todo.."
         onChange={(e) => setInputText(e.target.value)}
       />
-      <button onClick={()=> addTodo(inputText)}>Add</button>
+      <button onClick={() => addTodo(inputText)}>Add</button>
     </>
   );
 }
