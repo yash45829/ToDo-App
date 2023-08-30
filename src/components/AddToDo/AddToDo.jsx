@@ -1,22 +1,19 @@
-import TodoContext from "../../context/TodoContext";
 import { useContext, useState } from "react";
+import TodoDispatchContext from "../../context/TodoDispatchContext";
 
-function AddToDo({ updateList }) {
-  const [list, setList] = useContext(TodoContext);
+function AddToDo() {
   const [inputText, setInputText] = useState("");
+  const { dispatch } = useContext(TodoDispatchContext);
+
   const addTodo = (inputText) => {
-    let l = list.length;
-    setList([
-      ...list,
-      {
-        id: list[l - 1].id + 1,
-        todoText: inputText,
-        isFinished: false,
-      },
-    ]);
+    dispatch({ type: "add_todo", payload: { inputText } });
     setInputText("");
   };
-  
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      addTodo(inputText);
+    }
+  };
   return (
     <>
       <h1>Add to do </h1>
@@ -25,6 +22,7 @@ function AddToDo({ updateList }) {
         value={inputText}
         placeholder="Enter todo.."
         onChange={(e) => setInputText(e.target.value)}
+        onKeyUp={handleKeyPress}
       />
       <button onClick={() => addTodo(inputText)}>Add</button>
     </>

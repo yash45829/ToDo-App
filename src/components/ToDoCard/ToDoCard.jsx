@@ -1,12 +1,6 @@
 import { useState } from "react";
 
-function TodoCard({
-  todoText,
-  isFinished,
-  changeFinished,
-  onDelete,
-  onEdit,
-}) {
+function TodoCard({ todoText, isFinished, changeFinished, onDelete, onEdit }) {
   const [status, setStatus] = useState(isFinished);
   const [editMode, setEditMode] = useState(false);
   const [editText, setEditText] = useState(todoText);
@@ -26,6 +20,7 @@ function TodoCard({
         <input
           type="text"
           value={editText}
+          placeholder={todoText}
           onChange={(e) => setEditText(e.target.value)}
         />
       ) : (
