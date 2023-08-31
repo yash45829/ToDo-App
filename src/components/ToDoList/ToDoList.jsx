@@ -1,21 +1,20 @@
-import TodoContext from "../../context/TodoContext.js";
-import { useContext } from "react";
 import TodoCard from "../ToDoCard/ToDoCard.jsx";
-import TodoDispatchContext from "../../context/TodoDispatchContext.js";
-function TodoList() {
-  const [list] = useContext(TodoContext);
-  const { dispatch } = useContext(TodoDispatchContext);
+import { useSelector } from "react-redux";
+
+function TodoList({ finishTodo, deleteTodo, editTodo }) {
+
+  const list = useSelector((state) => state.todo);
 
   function changeFinished(todo, isFinished) {
-    dispatch({ type: "finish_todo", payload: { todo, isFinished } });
+    finishTodo(todo, isFinished);
   }
 
   function onDelete(todo) {
-    dispatch({ type: "delete_todo", payload: { todo } });
+    deleteTodo(todo);
   }
 
   function onEdit(todo, editText) {
-    dispatch({ type: "edit_todo", payload: { todo, editText } });
+    editTodo(todo, editText);
   }
 
   return (

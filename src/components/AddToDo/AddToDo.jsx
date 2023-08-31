@@ -1,17 +1,17 @@
-import { useContext, useState } from "react";
-import TodoDispatchContext from "../../context/TodoDispatchContext";
+import { useState } from "react";
 
-function AddToDo() {
+function AddToDo({ addTodo }) {
   const [inputText, setInputText] = useState("");
-  const { dispatch } = useContext(TodoDispatchContext);
 
-  const addTodo = (inputText) => {
-    dispatch({ type: "add_todo", payload: { inputText } });
+  const addingTodo = (inputText) => {
+    addTodo(inputText);
     setInputText("");
   };
+
+  // enter key press handler
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      addTodo(inputText);
+      addingTodo(inputText);
     }
   };
   return (
@@ -24,7 +24,7 @@ function AddToDo() {
         onChange={(e) => setInputText(e.target.value)}
         onKeyUp={handleKeyPress}
       />
-      <button onClick={() => addTodo(inputText)}>Add</button>
+      <button onClick={() => addingTodo(inputText)}>Add</button>
     </>
   );
 }
