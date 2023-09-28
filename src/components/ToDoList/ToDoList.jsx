@@ -18,10 +18,11 @@ function TodoList({ finishTodo, deleteTodo, editTodo }) {
   }
 
   return (
-    <div>
-      <h1> ToDo(s) </h1>
+    <div className="min-w-[40%] gap-4 ">
+      {/* <h1> ToDo(s) </h1> */}
       <div>
-        {list.map((todo, index) => (
+
+        { (list == '') ? <p className="text-center">no todo</p> :  list.map((todo, index) => (
           <div key={index}>
             <TodoCard
               key={todo.id}
