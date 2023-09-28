@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <h1>Todo App</h1>
+      <h1 className="text-blue-500">Todo App</h1>
       <AddToDo addTodo={actions.addTodo} />
       <TodoList
         finishTodo={actions.finishTodo}

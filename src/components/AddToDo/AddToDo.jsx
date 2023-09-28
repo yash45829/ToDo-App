@@ -4,8 +4,13 @@ function AddToDo({ addTodo }) {
   const [inputText, setInputText] = useState("");
 
   const addingTodo = (inputText) => {
+    console.log(inputText)
+    if(inputText !== ''){
     addTodo(inputText);
     setInputText("");
+    }else{
+      alert('please enter task')
+    }
   };
 
   // enter key press handler
