@@ -2,10 +2,12 @@ function TodoReducer(state = [], action) {
   //ADD TODO
   if (action.type == "add_todo") {
     let inputText = action.payload.inputText;
+    let id = state.length == 0 ? 1 : state[state.length - 1].id + 1;//id logic
+
     return [
       ...state,
       {
-        id: state.length + 1,
+        id: id,
         todoText: inputText,
         isFinished: false,
       },
