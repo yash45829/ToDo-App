@@ -27,7 +27,7 @@ function AddToDo({ addTodo }) {
       <input
         type="text"
         value={inputText}
-        className=" py-1 px-2 rounded "
+        className=" py-1 px-2 rounded focus:outline-none focus:shadow-md "
         placeholder="Enter todo.."
         onChange={(e) => setInputText(e.target.value)}
         onKeyUp={handleKeyPress}
@@ -35,7 +35,7 @@ function AddToDo({ addTodo }) {
       {/* button to add task  */}
       <button
         onClick={() => addingTodo(inputText)}
-        className="font-semibold text-xl"
+        className="font-semibold text-xl bg-green-400 text-white hover:bg-green-500 px-2 rounded-lg transition"
       >
         Add
       </button>
